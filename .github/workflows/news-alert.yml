@@ -1,0 +1,35 @@
+
+name: IT GOLD AI BOT V3 - USD News Alert
+
+on:
+  schedule:
+    - cron: '3,18,33,48 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: it-gold-usd-news-alert
+  cancel-in-progress: false
+
+jobs:
+  usd-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Send USD news alert
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+          NEWS_MODE: ${{ github.event_name == 'workflow_dispatch' && 'digest' || 'alert' }}
+        run: python news_alert.py
