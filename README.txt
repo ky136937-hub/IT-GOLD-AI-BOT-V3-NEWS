@@ -1,2 +1,1 @@
-See README_KM.txt for Khmer setup instructions.
-This package is a scheduled Telegram USD news alert companion. It does not run MT5.
+IT TRADE PRO FREE XAUS GOLD DATA + TELEGRAM ONLY. See README_KM.txt for Khmer setup instructions.
